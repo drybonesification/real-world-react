@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-//shared component (can be used by multiple)
-import ArticleList from "../ArticlesList";
+//shared component
+import ArticleList from "../ArticleList";
 
 const mapStateToProps = state => ({
   articles: state.articles
@@ -17,11 +17,10 @@ const MainView = props => {
             <a href="" className="nav-link active">
               Global Feline
             </a>
-            <ArticleList articles={props.articles} />
           </li>
         </ul>
       </div>
-      Article List Here
+      <ArticleList articles={props.articles} />
     </div>
   );
 };
