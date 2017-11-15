@@ -24,7 +24,6 @@ class Header extends Component {
                 </Link>
               </li>
             </ul>
-            <a className="navbar-band">{this.props.appName.toLowerCase()}</a>
           </div>
         </nav>
       </div>
