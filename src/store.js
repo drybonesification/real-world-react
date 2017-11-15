@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware,combineReducers } from "redux";
+import { createStore, applyMiddleware,combineReducers,compose } from "redux";
 import { promiseMiddleware } from "./middleware";
 
 import auth from "./reducers/auth"
@@ -13,6 +13,12 @@ const reducer = combineReducers({
 
 const middleware = applyMiddleware(promiseMiddleware);
 
-const store = createStore(reducer, middleware);
+const store = createStore(
+    reducer,
+    compose(
+      applyMiddleware(promiseMiddleware),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+  );
 
 export default store;
