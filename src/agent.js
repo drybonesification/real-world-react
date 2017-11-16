@@ -1,23 +1,24 @@
 import superagentPromise from "superagent-promise";
 import _superagent from "superagent";
-import JWT from "superagent-jwt";
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = "https://codercamps-conduit.herokuapp.com/api";
 
-const jwt = JWT({
-  header: "Authorization",
-  local: "jwt"
-})
+let token =null;
+const tokenPlugin = req =>{
+  if(token){
+    req.set("Authoriization",`Token ${token}`);
+  }
+}
 
 const responseBody = res => res.body;
 // by enter isnt back ticks its by tab 
 const requests = {
   get: url => 
-  superagent.get(`${API_ROOT}${url}`).use(jwt).then(responseBody),
+  superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
   post: (url,body) =>
-  superagent.post(`${API_ROOT}${url}`,body).use(jwt).then(responseBody)
+  superagent.post(`${API_ROOT}${url}`,body).use(tokenPlugin).then(responseBody)
 };
 
 const Articles = {
@@ -32,5 +33,8 @@ const Auth = {
   
 export default {
   Articles,
-  Auth
+  Auth,
+  setToken: _token =>{
+    token = _token;
+  }
 };
