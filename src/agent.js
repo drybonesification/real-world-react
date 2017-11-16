@@ -12,18 +12,12 @@ const jwt = JWT({
 })
 
 const responseBody = res => res.body;
-
+// by enter isnt back ticks its by tab 
 const requests = {
   get: url => 
-  superagent
-  .get('${API_ROOT}${url}')
-  .use(jwt)
-  .then(responseBody),
+  superagent.get(`${API_ROOT}${url}`).use(jwt).then(responseBody),
   post: (url,body) =>
-  superagent
-  .post('${API_ROOT}${url}',body)
-  .use(jwt)
-  .then(responseBody)
+  superagent.post(`${API_ROOT}${url}`,body).use(jwt).then(responseBody)
 };
 
 const Articles = {
