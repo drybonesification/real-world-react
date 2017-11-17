@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import Reactfrom "react";
 
 const ListErrors = ({ errors }) => {
     if (errors) {
